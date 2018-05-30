@@ -9,7 +9,7 @@
 class Worker: public Serializable{
 public:
     Worker();
-    Worker(QString fio, QString pSerias, QString pNumber);
+    Worker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs);
     ~Worker();
     void addPossibleSpecialization(Specialization *posibleSpec) throw(PossibleSpecializationAlreadyExistExeption);
     void removePossibleSpecialization(Specialization *posibleSpec) throw(PossibleSpecializationNotExistExeption);

@@ -5,7 +5,7 @@ Worker::Worker()
 
 }
 
-Worker::Worker(QString fio, QString pSerias, QString pNumber)
+Worker::Worker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs)
 {
     this->maskPossibleSpecs = 0;
     this->maskUsedSpecs = 0;
@@ -13,6 +13,9 @@ Worker::Worker(QString fio, QString pSerias, QString pNumber)
     this->passportSeries = pSerias;
     this->passportNumber = pNumber;
     this->isBusy = false;
+    for (QList<Specialization*>::const_iterator iter = specs.constBegin(); iter != specs.constEnd(); iter++){
+        addPossibleSpecialization(*iter);
+    }
 }
 
 Worker::~Worker(){}

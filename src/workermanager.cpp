@@ -11,9 +11,9 @@ QList<Worker*> WorkerManager::getWorkersByPossibleSpecialization(Specialization 
     return temp;
 }
 
-Worker* WorkerManager::addWorker(QString fio, QString pSerias, QString pNumber)
+Worker* WorkerManager::addWorker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs)
 {
-    workers << Worker(fio, pSerias, pNumber);
+    workers << Worker(fio, pSerias, pNumber, specs);
     workers.last().setId(workers.length() - 1);
     return &(workers.last());
 }

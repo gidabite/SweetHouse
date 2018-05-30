@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/add.png</file>
+        <file>images/addhover.png</file>
+    </qresource>
+</RCC>

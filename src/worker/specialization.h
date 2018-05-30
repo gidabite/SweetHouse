@@ -22,10 +22,12 @@ private:
 };
 class Surveyor: public Specialization, public Singleton<Surveyor>{
     friend class Singleton<Surveyor>;
+private:
     Surveyor():Specialization(1, QTranslator::tr("Surveuor")){}
 };
 class Foreman: public Specialization, public Singleton<Foreman>{
     friend class Singleton<Foreman>;
+private:
     Foreman():Specialization(2, QTranslator::tr("Foreman")){}
 };
 class Builder: public Specialization, public Singleton<Builder>{
@@ -35,18 +37,22 @@ private:
 };
 class Roofer: public Specialization, public Singleton<Roofer>{
     friend class Singleton<Roofer>;
+private:
     Roofer():Specialization(8, QTranslator::tr("Roofer")){}
 };
 class Electrician: public Specialization, public Singleton<Electrician>{
     friend class Singleton<Electrician>;
+private:
     Electrician():Specialization(16, QTranslator::tr("Electrician")){}
 };
 class Plumber: public Specialization, public Singleton<Plumber>{
     friend class Singleton<Plumber>;
+private:
     Plumber():Specialization(32, QTranslator::tr("Plumber")){}
 };
 class Manager: public Specialization, public Singleton<Manager>{
     friend class Singleton<Manager>;
+private:
     Manager():Specialization(64, QTranslator::tr("Manager")){}
 };
 

@@ -47,7 +47,8 @@ SOURCES += \
     singleton.cpp \
     serialization/serializable.cpp \
     serialization/serializer.cpp \
-    graph/graphexpression.cpp
+    graph/graphexpression.cpp \
+    gui/createworkerdialog.cpp
 
 
 HEADERS += \
@@ -74,11 +75,16 @@ HEADERS += \
     singleton.h \
     serialization/serializable.h \
     serialization/serializer.h \
-    graph/graphexpression.h
+    graph/graphexpression.h \
+    gui/createworkerdialog.h
 
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    createworker.ui
 
 TRANSLATIONS += \
     translations/sweethouse_ru.ts
+
+RESOURCES += \
+    resource.qrc
