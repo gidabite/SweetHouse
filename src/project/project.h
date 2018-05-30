@@ -13,11 +13,11 @@ public:
     Project();
     void setWorker(Specialization *spec, Worker *worker) throw (WorkerIsBusyException, PossibleSpecializationNotExistExeption, UsedSpecializationAlreadyExist);
     QList<Worker *> getWorkersBySpecialization(Specialization *spec);
+    Slot * getSlotById(uint id);
 protected:
     void addSlot(Specialization *spec);
-    uint addProcess(QString name, uint stage);
+    uint addProcess(QString name, uint stage, uint h);
     void addLink(uint fromNode, uint toNode);
-    uint addStage(QString name);
 private:
     PSGraph graph;
     QString name;

@@ -5,14 +5,9 @@ Project::Project()
 
 }
 
-uint Project::addStage(QString name)
+uint Project::addProcess(QString name, uint stage, uint h)
 {
-    return graph.addStage(name);
-}
-
-uint Project::addProcess(QString name, uint stage)
-{
-    return  graph.addProcess(name, stage);
+    return  graph.addProcess(name, stage, h);
 }
 
 void Project::addLink(uint fromNode, uint toNode)
@@ -23,6 +18,7 @@ void Project::addLink(uint fromNode, uint toNode)
 void Project::addSlot(Specialization *spec)
 {
     sls << Slot(spec);
+    sls.last().setId(sls.length() - 1);
 }
 
 void Project::setWorker(Specialization *spec, Worker *worker) throw (WorkerIsBusyException, PossibleSpecializationNotExistExeption, UsedSpecializationAlreadyExist)
@@ -53,6 +49,12 @@ QList<Worker *> Project::getWorkersBySpecialization(Specialization *spec)
     return temp;
 }
 
+
+Slot *Project::getSlotById(uint id)
+{
+    return &(sls[id]);
+}
+
 void Project::read(const QJsonObject &jsonObj)
 {
     QJsonArray jsonArray = jsonObj["slots"].toArray();
@@ -61,6 +63,7 @@ void Project::read(const QJsonObject &jsonObj)
         Slot slot;
         slot.read(jsonSlot.toObject());
         sls << slot;
+        sls.last().setId(sls.length() - 1);
     }
     this->name = jsonObj["name"].toString();
 }
@@ -73,6 +76,9 @@ void Project::write(QJsonObject &obj) const
         iter->write(jsonSlot);
         jsonArray.append(jsonSlot);
     }
+    QJsonObject jsonGraph;
+    graph.write(jsonGraph);
+    obj["psgraph"] = jsonGraph;
     obj["name"] = this->name;
     obj["slots"] = jsonArray;
 }

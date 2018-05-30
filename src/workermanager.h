@@ -15,7 +15,7 @@ public:
     QList<Worker *> getWorkersByPossibleSpecialization(Specialization *spec);
     Worker* addWorker(QString fio, QString pSerias, QString pNumber);
     void serializationWorker();
-    const Worker* getWorkerById(uint id);
+    Worker* getWorkerById(uint id);
 private:
     WorkerManager();
     QList<Worker> workers;

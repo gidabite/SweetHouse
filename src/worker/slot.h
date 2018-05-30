@@ -19,11 +19,13 @@ public:
     bool getIsBusy() const;
     void setIsBusy(bool value);
     Worker *getWorker();
-
+    uint getId() const;
+    void setId(const uint &value);
 private:
     bool isBusy;
     Worker* worker;
     Specialization *spec;
+    uint id;
 
     // Serializable interface
 public:

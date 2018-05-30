@@ -30,7 +30,6 @@ SOURCES += \
     graph/node.cpp \
     graph/process.cpp \
     graph/psgraph.cpp \
-    graph/stage.cpp \
     project/project.cpp \
     worker/slot.cpp \
     worker/specialization.cpp \
@@ -47,7 +46,8 @@ SOURCES += \
     workermanager.cpp \
     singleton.cpp \
     serialization/serializable.cpp \
-    serialization/serializer.cpp
+    serialization/serializer.cpp \
+    graph/graphexpression.cpp
 
 
 HEADERS += \
@@ -57,7 +57,6 @@ HEADERS += \
     graph/node.h \
     graph/process.h \
     graph/psgraph.h \
-    graph/stage.h \
     project/project.h \
     worker/slot.h \
     worker/specialization.h \
@@ -74,7 +73,8 @@ HEADERS += \
     workermanager.h \
     singleton.h \
     serialization/serializable.h \
-    serialization/serializer.h
+    serialization/serializer.h \
+    graph/graphexpression.h
 
 
 FORMS += \

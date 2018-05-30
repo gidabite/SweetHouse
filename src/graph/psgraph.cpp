@@ -5,15 +5,9 @@ PSGraph::PSGraph()
 
 }
 
-uint PSGraph::addStage(QString& name)
-{
-    stages << Stage(name, stages.length());
-    return stages.length() - 1;
-}
 
-uint PSGraph::addProcess(QString& name, uint stage)
+uint PSGraph::addProcess(QString& name, uint stage, uint h)
 {
-    Process newProcess(name, stage);
-    stages[stage].addProcess(newProcess);
+    Process newProcess(name, stage, h);
     return this->addNode(newProcess);
 }

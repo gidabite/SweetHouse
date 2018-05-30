@@ -18,9 +18,9 @@ Worker* WorkerManager::addWorker(QString fio, QString pSerias, QString pNumber)
     return &(workers.last());
 }
 
-const Worker *WorkerManager::getWorkerById(uint id)
+Worker *WorkerManager::getWorkerById(uint id)
 {
-    return &(workers.at(id));
+    return &(workers[id]);
 }
 
 WorkerManager::WorkerManager()
@@ -44,6 +44,7 @@ void WorkerManager::read(const QJsonObject &jsonObj)
         Worker worker;
         worker.read(jsonWorker.toObject());
         workers << worker;
+        workers.last().setId(workers.length() - 1);
     }
 }
 

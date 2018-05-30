@@ -43,6 +43,16 @@ Worker *Slot::getWorker()
     return worker;
 }
 
+uint Slot::getId() const
+{
+    return id;
+}
+
+void Slot::setId(const uint &value)
+{
+    id = value;
+}
+
 void Slot::read(const QJsonObject &jsonObj)
 {
     this->isBusy = jsonObj["isBusy"].toBool();
