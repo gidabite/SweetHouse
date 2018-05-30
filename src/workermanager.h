@@ -13,9 +13,11 @@ class WorkerManager: public Singleton<WorkerManager>, public Serializable
     friend class Serializer<WorkerManager>;
 public:
     QList<Worker *> getWorkersByPossibleSpecialization(Specialization *spec);
-    Worker* addWorker(QString fio, QString pSerias, QString pNumbe, QList<Specialization*> specsr);
+    Worker* addWorker(QString lName,QString name, QString mName, QString pSerias, QString pNumbe, QList<Specialization*> specsr);
     void serializationWorker();
     Worker* getWorkerById(uint id);
+    QList<Worker> getWorkers() const;
+    void deleteWorker(uint ids);
 private:
     WorkerManager();
     QList<Worker> workers;

@@ -5,11 +5,13 @@ Worker::Worker()
 
 }
 
-Worker::Worker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs)
+Worker::Worker(QString lName, QString name, QString mName, QString pSerias, QString pNumber, QList<Specialization*> specs)
 {
     this->maskPossibleSpecs = 0;
     this->maskUsedSpecs = 0;
-    this->FIO = fio;
+    this->lastName = lName;
+    this->name = name;
+    this->middleName = mName;
     this->passportSeries = pSerias;
     this->passportNumber = pNumber;
     this->isBusy = false;
@@ -62,14 +64,42 @@ void Worker::setPassportSeries(const QString &value)
     passportSeries = value;
 }
 
-QString Worker::getFIO() const
+QString Worker::getMiddleName() const
 {
-    return FIO;
+    return middleName;
 }
 
-void Worker::setFIO(const QString &value)
+void Worker::setMiddleName(const QString &value)
 {
-    FIO = value;
+    middleName = value;
+}
+
+void Worker::setMaskPossibleSpecs(QList<Specialization *> specs)
+{
+    this->maskPossibleSpecs = 0;
+    for (QList<Specialization*>::const_iterator iter = specs.constBegin(); iter != specs.constEnd(); iter++){
+        addPossibleSpecialization(*iter);
+    }
+}
+
+QString Worker::getName() const
+{
+    return name;
+}
+
+void Worker::setName(const QString &value)
+{
+    name = value;
+}
+
+QString Worker::getLastName() const
+{
+    return lastName;
+}
+
+void Worker::setLastName(const QString &value)
+{
+    lastName = value;
 }
 
 uint Worker::getId() const
@@ -111,7 +141,9 @@ bool Worker::isExistUsedSpecializtion(Specialization *spec)
 
 void Worker::read(const QJsonObject &jsonObj)
 {
-    this->FIO = jsonObj["FIO"].toString();
+    this->lastName = jsonObj["lastName"].toString();
+    this->name = jsonObj["name"].toString();
+    this->middleName = jsonObj["middleName"].toString();
     this->passportSeries = jsonObj["pSeries"].toString();
     this->passportNumber = jsonObj["pNumber"].toString();
     this->maskPossibleSpecs = jsonObj["mPS"].toString().toUInt();
@@ -121,7 +153,9 @@ void Worker::read(const QJsonObject &jsonObj)
 
 void Worker::write(QJsonObject & jsonObj) const
 {
-    jsonObj["FIO"] = this->FIO;
+    jsonObj["lastName"] = this->lastName;
+    jsonObj["name"] = this->name;
+    jsonObj["middleName"] = this->middleName;
     jsonObj["pSeries"] = this->passportSeries;
     jsonObj["pNumber"] = this->passportNumber;
     jsonObj["mPS"] = QString::number(this->maskPossibleSpecs);

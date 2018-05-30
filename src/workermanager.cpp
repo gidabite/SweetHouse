@@ -11,9 +11,9 @@ QList<Worker*> WorkerManager::getWorkersByPossibleSpecialization(Specialization 
     return temp;
 }
 
-Worker* WorkerManager::addWorker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs)
+Worker* WorkerManager::addWorker(QString lName,QString name, QString mName, QString pSerias, QString pNumber, QList<Specialization*> specs)
 {
-    workers << Worker(fio, pSerias, pNumber, specs);
+    workers << Worker(lName, name, mName, pSerias, pNumber, specs);
     workers.last().setId(workers.length() - 1);
     return &(workers.last());
 }
@@ -34,6 +34,16 @@ WorkerManager::WorkerManager()
             wFile.close();
         }
     }
+}
+
+QList<Worker> WorkerManager::getWorkers() const
+{
+    return workers;
+}
+
+void WorkerManager::deleteWorker(uint id)
+{
+    workers.removeAt(id);
 }
 
 void WorkerManager::read(const QJsonObject &jsonObj)

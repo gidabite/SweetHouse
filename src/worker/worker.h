@@ -9,7 +9,7 @@
 class Worker: public Serializable{
 public:
     Worker();
-    Worker(QString fio, QString pSerias, QString pNumber, QList<Specialization*> specs);
+    Worker(QString lName,QString name, QString mName, QString pSerias, QString pNumber, QList<Specialization*> specs);
     ~Worker();
     void addPossibleSpecialization(Specialization *posibleSpec) throw(PossibleSpecializationAlreadyExistExeption);
     void removePossibleSpecialization(Specialization *posibleSpec) throw(PossibleSpecializationNotExistExeption);
@@ -27,14 +27,13 @@ public:
     QString getPassportSeries() const;
     void setPassportSeries(const QString &value);
 
-    QString getFIO() const;
-    void setFIO(const QString &value);
-
 private:
     bool isBusy;
     uint maskPossibleSpecs;
     uint maskUsedSpecs;
-    QString FIO;
+    QString lastName;
+    QString name;
+    QString middleName;
     QString passportSeries;
     QString passportNumber;
     uint id;
@@ -46,6 +45,13 @@ public:
     void write(QJsonObject &obj) const;
     uint getId() const;
     void setId(const uint &value);
+    QString getLastName() const;
+    void setLastName(const QString &value);
+    QString getName() const;
+    void setName(const QString &value);
+    QString getMiddleName() const;
+    void setMiddleName(const QString &value);
+    void setMaskPossibleSpecs(QList<Specialization*> specs);
 };
 
 

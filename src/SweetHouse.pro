@@ -48,7 +48,9 @@ SOURCES += \
     serialization/serializable.cpp \
     serialization/serializer.cpp \
     graph/graphexpression.cpp \
-    gui/createworkerdialog.cpp
+    gui/createworkerdialog.cpp \
+    gui/button.cpp \
+    gui/editworkerwidget.cpp
 
 
 HEADERS += \
@@ -76,12 +78,15 @@ HEADERS += \
     serialization/serializable.h \
     serialization/serializer.h \
     graph/graphexpression.h \
-    gui/createworkerdialog.h
+    gui/createworkerdialog.h \
+    gui/button.h \
+    gui/editworkerwidget.h
 
 
 FORMS += \
         mainwindow.ui \
-    createworker.ui
+    createworker.ui \
+    editworker.ui
 
 TRANSLATIONS += \
     translations/sweethouse_ru.ts

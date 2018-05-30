@@ -62,8 +62,13 @@ void CreateWorkerDialog::on_pushButton_clicked()
                 if(ui->checkBoxPlumber->isChecked()) temp << Plumber::instance();
                 if(ui->checkBoxRoofer->isChecked()) temp << Roofer::instance();
                 if(ui->checkBoxSurveyor->isChecked()) temp << Surveyor::instance();
-                emit saveWorker(ui->lineLastName->text() + ui->lineName->text() + ui->lineMiddleName->text(), ui->lineSeriesPassport->text(), ui->lineNumberPassport->text(), temp);
+                emit saveWorker(ui->lineLastName->text(), ui->lineName->text(), ui->lineMiddleName->text(), ui->lineSeriesPassport->text(), ui->lineNumberPassport->text(), temp);
                 emit close();
             }
     }
+}
+
+void CreateWorkerDialog::on_pushButton_2_clicked()
+{
+    emit close();
 }

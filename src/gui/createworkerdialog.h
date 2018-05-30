@@ -22,8 +22,10 @@ protected:
     void closeEvent(QCloseEvent *event);
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+
 signals:
-    saveWorker(QString fio,QString pSeries, QString pNumber,  QList<Specialization*> specs);
+    saveWorker(QString lName,QString name, QString mName, QString pSeries, QString pNumber,  QList<Specialization*> specs);
 };
 
 #endif // CREATEWORKERDIALOG_H
