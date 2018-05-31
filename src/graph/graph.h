@@ -21,7 +21,7 @@ public:
         return nodes.length() - 1;
     }
     T* getNode(uint id){
-        return nodes[id];
+        return &nodes[id];
     }
     uint countNodes(){
         return nodes.length();

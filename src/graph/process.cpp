@@ -20,9 +20,21 @@ void Process::setIdStage(const uint &value)
     idStage = value;
 }
 
+uint Process::getStatus() const
+{
+    return status;
+}
+
+void Process::setStatus(const uint &value)
+{
+    status = value;
+}
+
 void Process::read(const QJsonObject &jsonObj)
 {
     this->idStage = jsonObj["idStage"].toString().toUInt();
+    this->status = jsonObj["status"].toString().toUInt();
+    this->h = jsonObj["h"].toString().toUInt();
     this->name = jsonObj["name"].toString();
     QJsonArray jsonArray = jsonObj["slots"].toArray();
     foreach(QJsonValue jsonSlot, jsonArray)
@@ -37,6 +49,8 @@ void Process::read(const QJsonObject &jsonObj)
 void Process::write(QJsonObject &obj) const
 {
     obj["name"] = this->name;
+    obj["status"] = QString::number(this->status);
+    obj["h"] = QString::number(this->h);
     obj["idStage"] = QString::number(this->idStage);
     QJsonArray jsonArray;
     for (QList<Slot>::const_iterator iter = sls.constBegin(); iter != sls.constEnd(); iter++){

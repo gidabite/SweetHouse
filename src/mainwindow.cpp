@@ -8,18 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     wm = WorkerManager::instance();
+    pm = ProjectManager::instance();
+    connect(ui->tabsContent,SIGNAL(tabCloseRequested(int)), this, SLOT(closeMyTab(int)));
 
     //Fill the listWorkrers
-    connect(ui->tabsContent,SIGNAL(tabCloseRequested(int)), this, SLOT(closeMyTab(int)));
     fillListWorkers();
 
     //Fill the listWorkrers
-    QPushButton * addProjectButton = new QPushButton();
-    addProjectButton->setMinimumHeight(41);
-    addProjectButton->setIcon(QIcon(":/images/images/add.png"));
-    addProjectButton->setIconSize(QSize(64,64));
-    QObject :: connect(addProjectButton, SIGNAL(clicked(bool)), SLOT(createNewProject()));
-    this->addItemToListWidget(ui->listProjects, addProjectButton);
+    fillListProjects();
 }
 
 
@@ -39,7 +35,10 @@ void MainWindow::createNewWorker()
 
 void MainWindow::createNewProject()
 {
-
+    CreateProjtctDialog *cpd = new CreateProjtctDialog();
+    QObject::connect(cpd, SIGNAL(saveProject(QString , QString , QString , QString , QString , QString , QString , QString )), this, SLOT(saveProject(QString , QString , QString , QString , QString , QString , QString , QString )));
+    cpd->setModal(true);
+    cpd->show();
 }
 
 void MainWindow::saveWorker(QString lName,QString name, QString mName,  QString pSeries, QString pNumber, QList<Specialization *> specs)
@@ -59,6 +58,28 @@ void MainWindow::updateWorker(uint id, QString lName, QString name, QString mNam
     worker->setPassportSeries(pSeries);
     worker->setMaskPossibleSpecs(specs);
     exportWorkers("workers.json");
+    fillListWorkers();
+}
+
+void MainWindow::saveProject(QString type, QString nameProject, QString address, QString lastName, QString name, QString middleName, QString pSeries, QString pNumber)
+{
+    if (type == "Wooden House")
+        pm->addConcreteProject1(nameProject,address,lastName,name,middleName,pSeries, pNumber);
+    exportProjects("projects.json");
+    fillListProjects();
+}
+
+void MainWindow::updateProject(uint id, QString type, QString nameProject, QString address, QString lastName, QString name, QString middleName, QString pSeries, QString pNumber)
+{
+
+}
+
+void MainWindow::deleteProject(uint id)
+{
+    pm->deleteProject(id);
+    (dynamic_cast<Button*>(ui->listProjects->itemWidget(ui->listProjects->item(id + 1)))->setIsShow(false));
+    ui->tabsContent->removeTab(ui->tabsContent->indexOf((EditProjectWidjet*)sender()));
+    exportWorkers("project.json");
     fillListWorkers();
 }
 
@@ -84,9 +105,23 @@ void MainWindow::clickWorker(){
         btn->setIsShow(true);
         Worker* worker = wm->getWorkerById(btn->getId());
         EditWorkerWidget *newTab = new EditWorkerWidget(worker, ui->tabsContent);
-        QObject::connect(newTab, SIGNAL(updateWorker(uint, QString, QString, QString, QString, QString, QList<Specialization*>)), this, SLOT(updateWorker(uint, QString, QString, QString, QString, QString, QList<Specialization*>)));
+        QObject::connect(newTab, SIGNAL(updateWorker(uint id, QString lName,QString name, QString mName, QString pSeries, QString pNumber,  QList<Specialization*> specs)), this, SLOT(updateWorker(uint, QString lName,QString name, QString mName, QString pSeries, QString pNumber,  QList<Specialization*> specs)));
         QObject::connect(newTab, SIGNAL(deleteWorker(uint)), this, SLOT(deleteWorker(uint)));
-        int index = ui->tabsContent->addTab(newTab, worker->getLastName() + " " +  worker->getName()[0]+ ". " + worker->getMiddleName()[0] + ".");
+        ui->tabsContent->addTab(newTab, worker->getLastName() + " " +  worker->getName()[0]+ ". " + worker->getMiddleName()[0] + ".");
+        ui->tabsContent->setCurrentWidget(newTab);
+    }
+}
+
+void MainWindow::clickProject()
+{
+    Button * btn = (Button*)sender();
+    if (!(btn->getIsShow())){
+        btn->setIsShow(true);
+        Project* project = pm->getProjectById(btn->getId());
+        EditProjectWidjet *newTab = new EditProjectWidjet(project, ui->tabsContent);
+        QObject::connect(newTab, SIGNAL(updateProject(uint, QString type, QString nameProject, QString address, QString lastName, QString name, QString middleName, QString pSeries, QString pNumber)), this, SLOT(updateProject(uint, QString type, QString nameProject, QString address, QString lastName, QString name, QString middleName, QString pSeries, QString pNumber)));
+        QObject::connect(newTab, SIGNAL(deleteProject(uint)), this, SLOT(deleteProject(uint)));
+        ui->tabsContent->addTab(newTab, project->getNameProject());
         ui->tabsContent->setCurrentWidget(newTab);
     }
 }
@@ -112,11 +147,41 @@ void MainWindow::fillListWorkers()
     }
 }
 
+void MainWindow::fillListProjects()
+{
+    ui->listProjects->clear();
+    QPushButton * addProjectButton = new QPushButton();
+    addProjectButton->setMinimumHeight(41);
+    addProjectButton->setIcon(QIcon(":/images/images/add.png"));
+    addProjectButton->setIconSize(QSize(64,64));
+    QObject :: connect(addProjectButton, SIGNAL(clicked(bool)), SLOT(createNewProject()));
+    this->addItemToListWidget(ui->listProjects, addProjectButton);
+    QList<Project> projects = pm->getProjects();
+    for (QList<Project>::const_iterator iter = projects.constBegin(); iter != projects.constEnd(); iter++){
+        Button * addProjectButton = new Button();
+        addProjectButton->setId(iter->getId());
+        addProjectButton->setMinimumHeight(41);
+        addProjectButton->setText(iter->getNameProject());
+        addProjectButton->setIconSize(QSize(64,64));
+        connect(addProjectButton, SIGNAL(clicked(bool)), SLOT(clickProject()));
+        this->addItemToListWidget(ui->listProjects, addProjectButton);
+    }
+}
+
 void MainWindow::exportWorkers(QString path)
 {
     QFile out(path);
     if (out.open(QFile::WriteOnly)){
         out.write((Serializer<WorkerManager>::serialize(*wm)).toUtf8());
+        out.close();
+    }
+}
+
+void MainWindow::exportProjects(QString path)
+{
+    QFile out(path);
+    if (out.open(QFile::WriteOnly)){
+        out.write((Serializer<ProjectManager>::serialize(*pm)).toUtf8());
         out.close();
     }
 }

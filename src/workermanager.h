@@ -14,7 +14,6 @@ class WorkerManager: public Singleton<WorkerManager>, public Serializable
 public:
     QList<Worker *> getWorkersByPossibleSpecialization(Specialization *spec);
     Worker* addWorker(QString lName,QString name, QString mName, QString pSerias, QString pNumbe, QList<Specialization*> specsr);
-    void serializationWorker();
     Worker* getWorkerById(uint id);
     QList<Worker> getWorkers() const;
     void deleteWorker(uint ids);

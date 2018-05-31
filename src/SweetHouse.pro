@@ -50,7 +50,11 @@ SOURCES += \
     graph/graphexpression.cpp \
     gui/createworkerdialog.cpp \
     gui/button.cpp \
-    gui/editworkerwidget.cpp
+    gui/editworkerwidget.cpp \
+    gui/createprojtctdialog.cpp \
+    projectmanager.cpp \
+    project/woodenproject.cpp \
+    gui/editprojectwidjet.cpp
 
 
 HEADERS += \
@@ -80,13 +84,19 @@ HEADERS += \
     graph/graphexpression.h \
     gui/createworkerdialog.h \
     gui/button.h \
-    gui/editworkerwidget.h
+    gui/editworkerwidget.h \
+    gui/createprojtctdialog.h \
+    projectmanager.h \
+    project/woodenproject.h \
+    gui/editprojectwidjet.h
 
 
 FORMS += \
         mainwindow.ui \
     createworker.ui \
-    editworker.ui
+    editworker.ui \
+    gui/createprojtctdialog.ui \
+    gui/editprojectwidjet.ui
 
 TRANSLATIONS += \
     translations/sweethouse_ru.ts

@@ -10,23 +10,52 @@
 class Project: public Serializable
 {
 public:
-    Project();
+    Project(){};
+    Project(QString nameProject, QString address, QString lastName, QString name, QString middleName, QString pSeries, QString pNumber):
+        nameProject(nameProject),address(address), lastName(lastName), name(name), middleName(middleName), passportSeries(pSeries), passportNumber(pNumber){};
     void setWorker(Specialization *spec, Worker *worker) throw (WorkerIsBusyException, PossibleSpecializationNotExistExeption, UsedSpecializationAlreadyExist);
     QList<Worker *> getWorkersBySpecialization(Specialization *spec);
     Slot * getSlotById(uint id);
-protected:
+
     void addSlot(Specialization *spec);
     uint addProcess(QString name, uint stage, uint h);
     void addLink(uint fromNode, uint toNode);
-private:
+protected:
     PSGraph graph;
+    QString nameProject;
+    QString address;
+    QString lastName;
     QString name;
-    QList<Slot> sls; //slots
-
+    QString middleName;
+    QString passportSeries;
+    QString passportNumber;
+    QList<Slot> sls;
+    QList<uint> algRes;
+    QString type;
+    uint id;
     // Serializable interface
 public:
     void read(const QJsonObject &jsonObj);
     void write(QJsonObject &obj) const;
+    QString getNameProject() const;
+    void setNameProject(const QString &value);
+    QString getAddress() const;
+    void setAddress(const QString &value);
+    QString getLastName() const;
+    void setLastName(const QString &value);
+    QString getName() const;
+    void setName(const QString &value);
+    QString getMiddleName() const;
+    void setMiddleName(const QString &value);
+    QString getPassportSeries() const;
+    void setPassportSeries(const QString &value);
+    QString getPassportNumber() const;
+    void setPassportNumber(const QString &value);
+    uint getId() const;
+    void setId(const uint &value);
+    QString getType() const;
+    void setType(const QString &value);
+    PSGraph* getGraph();
 };
 
 #endif // PROJECT_H

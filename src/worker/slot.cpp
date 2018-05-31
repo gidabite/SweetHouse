@@ -83,14 +83,16 @@ void Slot::read(const QJsonObject &jsonObj)
         this->spec = EmptySpecialization::instance();
         break;
     }
-    this->worker = WorkerManager::instance()->getWorkerById(jsonObj["workerId"].toString().toUInt());
+    if (jsonObj["workerId"] != "")
+        this->worker = WorkerManager::instance()->getWorkerById(jsonObj["workerId"].toString().toUInt());
 }
 
 void Slot::write(QJsonObject &obj) const
 {
     obj["isBusy"] = QJsonValue(this->isBusy);
     obj["spec"] = QString::number(this->spec->getId());
-    obj["workerId"] = QString::number(this->worker->getId());
+    if (this->worker)
+        obj["workerId"] = QString::number(this->worker->getId());
 }
 
 
