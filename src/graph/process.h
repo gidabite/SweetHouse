@@ -18,7 +18,7 @@ private:
     QList<Slot> sls;
     uint idStage;
     uint h;
-    uint status;
+    uint status = 0;
     // Serializable interface
 public:
     void read(const QJsonObject &jsonObj);

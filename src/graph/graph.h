@@ -23,6 +23,9 @@ public:
     T* getNode(uint id){
         return &nodes[id];
     }
+    QList<uint> getEdges(uint node){
+        return edges[node];
+    }
     uint countNodes(){
         return nodes.length();
     }

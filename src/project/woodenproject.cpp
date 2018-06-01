@@ -110,7 +110,4 @@ WoodenProject::WoodenProject(QString nameProject, QString address, QString lastN
     uint id22 = this->addProcess("Complete", 4, 0);
     this->graph.getNode(id22)->addSlot(Manager::instance());
     this->addLink(id21, id22);
-
-
-
 }

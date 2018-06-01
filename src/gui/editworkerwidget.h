@@ -1,13 +1,13 @@
 #ifndef EDITWORKERWIDGET_H
 #define EDITWORKERWIDGET_H
 
-#include <QWidget>
+#include "edirwidget.h"
 #include <QMessageBox>
 #include "worker/worker.h"
 #include "ui_editworker.h"
 
 
-class EditWorkerWidget: public QWidget
+class EditWorkerWidget: public EdirWidget
 {
     Q_OBJECT
 public:
@@ -19,7 +19,6 @@ private:
    bool check(QLineEdit *e);
    bool checkSpecialization();
    Ui::EditWorkerWidget *ui;
-   uint id;
    // QWidget interface
 protected:
    void closeEvent(QCloseEvent *event);

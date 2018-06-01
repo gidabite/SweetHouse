@@ -10,7 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     wm = WorkerManager::instance();
     pm = ProjectManager::instance();
     connect(ui->tabsContent,SIGNAL(tabCloseRequested(int)), this, SLOT(closeMyTab(int)));
-
+    ui->tabsContent->removeTab(0);
+    ui->tabsContent->removeTab(0);
+    ui->tabsContent->removeTab(0);
     //Fill the listWorkrers
     fillListWorkers();
 
@@ -94,8 +96,12 @@ void MainWindow::deleteWorker(uint id)
 
 void MainWindow::closeMyTab(int index)
 {
-    uint id = dynamic_cast<EditWorkerWidget*>(ui->tabsContent->widget(index))->getId();
-    (dynamic_cast<Button*>(ui->listWorkers->itemWidget(ui->listWorkers->item(id + 1)))->setIsShow(false));
+    EdirWidget *w = dynamic_cast<EdirWidget*>(ui->tabsContent->widget(index));
+    uint id = w->getId();
+    if (!w->getType())
+        (dynamic_cast<Button*>(ui->listWorkers->itemWidget(ui->listWorkers->item(id + 1)))->setIsShow(false));
+    else
+        (dynamic_cast<Button*>(ui->listProjects->itemWidget(ui->listProjects->item(id + 1)))->setIsShow(false));
     ui->tabsContent->removeTab(index);
 }
 
@@ -105,7 +111,7 @@ void MainWindow::clickWorker(){
         btn->setIsShow(true);
         Worker* worker = wm->getWorkerById(btn->getId());
         EditWorkerWidget *newTab = new EditWorkerWidget(worker, ui->tabsContent);
-        QObject::connect(newTab, SIGNAL(updateWorker(uint id, QString lName,QString name, QString mName, QString pSeries, QString pNumber,  QList<Specialization*> specs)), this, SLOT(updateWorker(uint, QString lName,QString name, QString mName, QString pSeries, QString pNumber,  QList<Specialization*> specs)));
+        QObject::connect(newTab, SIGNAL(updateWorker(uint, QString, QString, QString, QString, QString, QList<Specialization*>)), this, SLOT(updateWorker(uint, QString, QString, QString, QString, QString, QList<Specialization*>)));
         QObject::connect(newTab, SIGNAL(deleteWorker(uint)), this, SLOT(deleteWorker(uint)));
         ui->tabsContent->addTab(newTab, worker->getLastName() + " " +  worker->getName()[0]+ ". " + worker->getMiddleName()[0] + ".");
         ui->tabsContent->setCurrentWidget(newTab);

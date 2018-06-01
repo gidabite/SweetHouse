@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>860</width>
-    <height>490</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>860</width>
-    <height>490</height>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>860</width>
-    <height>492</height>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
       <x>280</x>
       <y>0</y>
       <width>571</width>
-      <height>431</height>
+      <height>531</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -48,126 +48,25 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="tabsClosable">
      <bool>true</bool>
     </property>
     <widget class="QWidget" name="tab">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
-     <widget class="QListView" name="listView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>270</y>
-        <width>461</width>
-        <height>121</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>531</width>
-        <height>251</height>
-       </rect>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>529</width>
-         <height>249</height>
-        </rect>
-       </property>
-       <widget class="QGroupBox" name="groupBox">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>111</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>1 этап</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="geometry">
-         <rect>
-          <x>370</x>
-          <y>10</y>
-          <width>111</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>3 этап</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>10</y>
-          <width>111</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>2 этап</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_2">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>370</y>
-        <width>82</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Описание</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>270</y>
-        <width>82</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Дерево</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="">
      <attribute name="title">
       <string>Страница</string>
      </attribute>
@@ -179,7 +78,7 @@
       <x>260</x>
       <y>0</y>
       <width>31</width>
-      <height>431</height>
+      <height>541</height>
      </rect>
     </property>
     <property name="orientation">
@@ -202,8 +101,8 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>425</y>
+      <x>270</x>
+      <y>530</y>
       <width>591</width>
       <height>21</height>
      </rect>
@@ -242,8 +141,8 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>425</y>
-      <width>201</width>
+      <y>530</y>
+      <width>271</width>
       <height>21</height>
      </rect>
     </property>
@@ -257,7 +156,7 @@
       <x>10</x>
       <y>0</y>
       <width>261</width>
-      <height>431</height>
+      <height>531</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -282,7 +181,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -300,7 +199,7 @@
         <x>-1</x>
         <y>-1</y>
         <width>241</width>
-        <height>430</height>
+        <height>531</height>
        </rect>
       </property>
      </widget>
@@ -315,7 +214,7 @@
         <x>-1</x>
         <y>-1</y>
         <width>241</width>
-        <height>430</height>
+        <height>531</height>
        </rect>
       </property>
      </widget>

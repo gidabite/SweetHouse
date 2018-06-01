@@ -1,7 +1,7 @@
 #include "editworkerwidget.h"
 
 EditWorkerWidget::EditWorkerWidget(Worker* worker, QWidget *parent):
-    QWidget(parent),
+    EdirWidget(false, parent),
     ui(new Ui::EditWorkerWidget)
 {
     ui->setupUi(this);

@@ -34,8 +34,6 @@ SOURCES += \
     worker/slot.cpp \
     worker/specialization.cpp \
     worker/worker.cpp \
-    auth.cpp \
-    configuration.cpp \
     main.cpp \
     mainwindow.cpp \
     exceptions/specializationexception.cpp \
@@ -54,7 +52,8 @@ SOURCES += \
     gui/createprojtctdialog.cpp \
     projectmanager.cpp \
     project/woodenproject.cpp \
-    gui/editprojectwidjet.cpp
+    gui/editprojectwidjet.cpp \
+    gui/edirwidget.cpp
 
 
 HEADERS += \
@@ -68,8 +67,6 @@ HEADERS += \
     worker/slot.h \
     worker/specialization.h \
     worker/worker.h \
-    auth.h \
-    configuration.h \
     mainwindow.h \
     exceptions/specializationexception.h \
     exceptions/PossibleSpecAEExeption.h \
@@ -88,7 +85,8 @@ HEADERS += \
     gui/createprojtctdialog.h \
     projectmanager.h \
     project/woodenproject.h \
-    gui/editprojectwidjet.h
+    gui/editprojectwidjet.h \
+    gui/edirwidget.h
 
 
 FORMS += \
@@ -96,7 +94,9 @@ FORMS += \
     createworker.ui \
     editworker.ui \
     gui/createprojtctdialog.ui \
-    gui/editprojectwidjet.ui
+    gui/editprojectwidjet.ui \
+    edirwidget.ui \
+    gui/edirwidget.ui
 
 TRANSLATIONS += \
     translations/sweethouse_ru.ts

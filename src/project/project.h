@@ -4,6 +4,7 @@
 #include "../graph/psgraph.h"
 #include "../worker/worker.h"
 #include "../worker/slot.h"
+#include "graph/graphexpression.h"
 #include <QString>
 #include <QList>
 
@@ -20,6 +21,7 @@ public:
     void addSlot(Specialization *spec);
     uint addProcess(QString name, uint stage, uint h);
     void addLink(uint fromNode, uint toNode);
+    QList<uint> eval();
 protected:
     PSGraph graph;
     QString nameProject;
@@ -30,8 +32,9 @@ protected:
     QString passportSeries;
     QString passportNumber;
     QList<Slot> sls;
-    QList<uint> algRes;
+    QList<uint> F;
     QString type;
+    QList<uint> algRes;
     uint id;
     // Serializable interface
 public:

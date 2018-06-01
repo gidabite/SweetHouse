@@ -6,28 +6,26 @@ template< class T >
 class GraphExpression
 {
 public:
-    static QList<int> algorithm(Graph<T> graph, uint &mas){
-        uint res;
-        QList<int> temp = retAlg(graph, QList<uint>(), 0, 0, res);
-        mas = res;
+    static QList<uint> algorithm(Graph<T> graph){
+        QList<uint> t;
+        t.push_back(0);
+        QList<uint> temp = retAlg(graph, t, 0);
         return temp;
     }
 private:
-    static QList<int> retAlg(Graph<T> graph, QList<uint> path, uint node, uint summ, uint &res){
-        if (graph.edges[node].empty()){
-            res = summ + graph.getNode(node).getData();
+    static QList<uint> retAlg(Graph<T> graph, QList<uint> path, uint node){
+        if (graph.getEdges(node).empty()){
+            path[0] = path[0] + graph.getNode(node)->getData();
             path << node;
             return path;
         } else {
-            QList<uint> nodes = graph.edges[node];
-            uint resX = summ + graph.getNode(node).getData();
+            QList<uint> nodes = graph.getEdges(node);
+            path[0] = path[0] + graph.getNode(node)->getData();
             path << node;
-            QList<uint> pathRet;
+            QList<uint> pathRet = path;
             for(QList<uint>::const_iterator iter = nodes.constBegin(); iter != nodes.constEnd(); iter++){
-                uint tempValue;
-               QList<uint> tempPath = retAlg(graph, path, *iter, resX, tempValue);
-                if (tempValue >= res){
-                    res = tempValue;
+                 QList<uint> tempPath = retAlg(graph, path, *iter);
+                if (tempPath[0] >= pathRet[0]){
                     pathRet = tempPath;
                 }
             }

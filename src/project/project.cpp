@@ -11,6 +11,11 @@ void Project::addLink(uint fromNode, uint toNode)
     graph.addEdge(fromNode, toNode);
 }
 
+QList<uint> Project::eval()
+{
+    return GraphExpression<Process>::algorithm(this->graph);
+}
+
 PSGraph *Project::getGraph()
 {
     return &graph;
